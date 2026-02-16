@@ -12,9 +12,9 @@ public interface EmployeeService {
 
     List<Employee> GetGreaterSalaryEmplo(double salary);
 
-    void saveEmployee(Employee employee);
+    Employee saveEmployee(Employee employee);
 
-    void updateSalary(Long id, double salary);
+    Employee updateSalary(Long id, double salary);
 
     void deleteEmployeeById(Long id);
 }

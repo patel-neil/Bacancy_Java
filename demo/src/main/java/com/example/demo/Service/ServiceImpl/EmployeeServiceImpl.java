@@ -32,15 +32,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void saveEmployee(Employee employee) {
-        this.employeeRepo.save(employee);
+    public Employee saveEmployee(Employee employee) {
+        return employeeRepo.save(employee);
     }
 
+
     @Override
-    public void updateSalary(Long id, double salary) {
+    public Employee updateSalary(Long id, double salary) {
         Employee e =  employeeRepo.findById(id).orElseThrow();
         e.setSalary(salary);
         employeeRepo.save(e);
+        return e;
     }
 
     @Override

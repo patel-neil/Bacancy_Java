@@ -3,28 +3,30 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.List;
 
 @Entity
-@Table(name ="employee_Details")
+@Table(name = "EMPLOYEE_DETAILS")
+@Getter
 public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Employee_names", nullable = false, length = 50)
+    @Column(name = "EMPLOYEE_NAMES", nullable = false, length = 50)
     private String name;
 
-    @Column(name = "employee_emails", nullable = false,  length = 50, unique = true)
+    @Column(name = "EMPLOYEE_EMAILS", nullable = false,  length = 50, unique = true)
     private String email;
 
-    @Column(name="salary_details", nullable = false)
+    @Column(name="SALARY_DETAILS", nullable = false)
     private double salary;
 
     @ElementCollection
-    @CollectionTable(name = "emp_hobbies", joinColumns = @JoinColumn(name = "id"))
+    @CollectionTable(name = "EMP_HOBBIES", joinColumns = @JoinColumn(name = "id"))
 
     private List<String> hobbies;
 
@@ -51,6 +53,10 @@ public class Employee {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    public void setHobbies(List<String> hobbies) {
+        this.hobbies = hobbies;
     }
 
     @Override
