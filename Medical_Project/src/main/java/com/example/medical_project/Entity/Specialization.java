@@ -12,7 +12,7 @@ import java.util.List;
 public class Specialization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long spes_id;
+    private Long specialization_id;
 
     @Column(name = "spes_name")
     private String name;

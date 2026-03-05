@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "hospital_details")
@@ -23,5 +25,8 @@ public class Hospital {
     private Long telephone_num;
 
     @OneToMany(mappedBy = "hospital")
-    private List<Doctor> doctors = new ArrayList<>();
+    private Set<Doctor> doctors = new HashSet<>();
+
+    @OneToMany(mappedBy = "hospital")
+    private List<Appointment> appointments = new ArrayList<>();
 }

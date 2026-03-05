@@ -5,7 +5,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "doctor_details")
@@ -37,5 +40,8 @@ public class Doctor {
     @JoinTable(name = "doctor_specialization_mapping",
                 joinColumns = @JoinColumn(name = "doctor_id"),
                 inverseJoinColumns = @JoinColumn(name = "specialization_id"))
-    private HashSet<Specialization> specializations = new HashSet<>();
+    private Set<Specialization> specializations = new HashSet<>();
+
+    @OneToMany(mappedBy = "doctor")
+    private List<Appointment> appointments = new ArrayList<>();
 }
