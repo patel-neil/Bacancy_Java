@@ -17,7 +17,7 @@ public class Hospital {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long hospital_id;
+    private Long hospitalId;
 
     private String hospital_name;
 

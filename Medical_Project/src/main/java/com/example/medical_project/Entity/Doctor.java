@@ -33,7 +33,7 @@ public class Doctor {
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hospital_id", nullable = false)
+    @JoinColumn(name = "hospitalId", nullable = false)
     private Hospital hospital;
 
     @ManyToMany

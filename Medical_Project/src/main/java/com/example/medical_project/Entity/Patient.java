@@ -28,6 +28,9 @@ public class Patient {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @Column(name = "phone_number",  unique = true, length = 10)
+    private Long phoneNumber;
+
     @OneToMany(mappedBy = "patient")
     private List<Appointment> appointments = new ArrayList<>();
 }
