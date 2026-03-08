@@ -8,6 +8,7 @@ import com.example.medical_project.Service.HospitalService;
 import jdk.swing.interop.SwingInterOpUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class HospitalServiceImpl implements HospitalService {
         return hospitalrepo.findAll();
     }
 
+    @Transactional
     @Override
     public Hospital updateHospital(Long id, Hospital hospital) {
         Hospital oldhospital =  hospitalrepo.findById(id).orElseThrow();
