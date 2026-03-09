@@ -1,6 +1,7 @@
 package com.example.medical_project.Entity;
 
 import com.example.medical_project.Enums.Gender;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,6 +32,7 @@ public class Patient {
     @Column(name = "phone_number",  unique = true, length = 10)
     private Long phoneNumber;
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patientId")
+    @JsonManagedReference("patient-appointment")
     private List<Appointment> appointments = new ArrayList<>();
 }

@@ -2,6 +2,8 @@ package com.example.medical_project.Entity;
 
 
 import com.example.medical_project.Enums.Status;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,16 +30,20 @@ public class Appointment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doctor_id")
-    private Doctor doctor;
+    @JsonBackReference("doctor-appointment")
+    private Doctor doctorId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hospital_id")
-    private Hospital hospital;
+    @JsonBackReference("hospital-appointment")
+    private Hospital hospitalId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id")
-    private Patient patient;
+    @JsonBackReference("patient-appointment")
+    private Patient patientId;
 
     @OneToOne(mappedBy = "appointment", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Prescription prescription;
 }

@@ -12,7 +12,7 @@ public interface DoctorService {
 
     List<Doctor> getAllDoctors();
 
-    Doctor updateDoctor(Long id, Doctor doctor);
+    Doctor updateDoctor(Long id, Doctor doctor, Long hospitalId);
 
     void deleteDoctor(Long id);
 

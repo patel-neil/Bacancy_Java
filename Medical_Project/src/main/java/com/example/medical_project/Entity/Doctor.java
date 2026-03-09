@@ -1,6 +1,8 @@
 package com.example.medical_project.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +26,7 @@ public class Doctor {
     private String name;
 
     @Column(nullable = false)
-    private int Experience;
+    private Integer Experience;
 
     @Column(nullable = false, length = 10, unique = true)
     private Long Phone_number;
@@ -34,6 +36,7 @@ public class Doctor {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hospitalId", nullable = false)
+    @JsonBackReference("hospital-doctor")
     private Hospital hospital;
 
     @ManyToMany
@@ -42,6 +45,7 @@ public class Doctor {
                 inverseJoinColumns = @JoinColumn(name = "specialization_id"))
     private Set<Specialization> specializations = new HashSet<>();
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctorId")
+    @JsonManagedReference("doctor-appointment")
     private List<Appointment> appointments = new ArrayList<>();
 }

@@ -1,5 +1,6 @@
 package com.example.medical_project.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,5 +23,6 @@ public class Prescription {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "appointment_id")
+    @JsonBackReference
     private Appointment appointment;
 }

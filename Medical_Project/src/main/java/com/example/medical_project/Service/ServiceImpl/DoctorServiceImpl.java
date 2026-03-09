@@ -43,7 +43,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     @Transactional
-    public Doctor updateDoctor(Long id, Doctor doctor) {
+    public Doctor updateDoctor(Long id, Doctor doctor, Long hospitalId) {
 
         Doctor oldDoctor = doctorRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Doctor not found"));
@@ -52,6 +52,12 @@ public class DoctorServiceImpl implements DoctorService {
         oldDoctor.setEmail(doctor.getEmail());
         oldDoctor.setPhone_number(doctor.getPhone_number());
         oldDoctor.setExperience(doctor.getExperience());
+
+        if (hospitalId != null) {
+            Hospital hospital = hospitalRepo.findById(hospitalId)
+                    .orElseThrow(() -> new RuntimeException("Hospital not found"));
+            oldDoctor.setHospital(hospital);
+        }
 
         return doctorRepo.save(oldDoctor);
     }
